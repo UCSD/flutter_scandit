@@ -16,6 +16,7 @@ import com.scandit.datacapture.core.data.FrameData;
 import com.scandit.datacapture.core.source.Camera;
 import com.scandit.datacapture.core.source.FrameSourceState;
 import com.scandit.datacapture.core.ui.DataCaptureView;
+import com.scandit.datacapture.core.ui.gesture.TapToFocus;
 import com.scandit.datacapture.core.ui.viewfinder.RectangularViewfinder;
 
 import org.jetbrains.annotations.NotNull;
@@ -143,6 +144,7 @@ public class ScanditView implements PlatformView, MethodChannel.MethodCallHandle
             // To visualize the on-going barcode capturing process on screen, setup a data capture view
             // that renders the camera preview. The view must be connected to the data capture context.
             _dataCaptureView = DataCaptureView.newInstance(_context, _dataCaptureContext);
+            _dataCaptureView.setFocusGesture(new TapToFocus());
 
             startCameraAndCapturing();
         } catch (Exception e) {
