@@ -15,7 +15,7 @@ A new flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'ScanditBarcodeCapture', '~> 6.1'
+  s.dependency 'ScanditBarcodeCapture', '~> 6.6.0-beta.2'
 
   s.ios.deployment_target = '9.0'
 end
