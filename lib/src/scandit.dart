@@ -17,13 +17,13 @@ class Scandit extends StatefulWidget {
   final String licenseKey;
   final List<Symbology> symbologies;
   final void Function(BarcodeResult) scanned;
-  final void Function(BarcodeScanException) onError;
-  final void Function(ScanditController) onScanditCreated;
+  final void Function(BarcodeScanException)? onError;
+  final void Function(ScanditController?)? onScanditCreated;
 
   const Scandit({
-    Key key,
-    @required this.licenseKey,
-    @required this.scanned,
+    Key? key,
+    required this.licenseKey,
+    required this.scanned,
     this.onScanditCreated,
     this.onError,
     this.symbologies = defaultSymbologies,
@@ -37,19 +37,19 @@ class _ScanditState extends State<Scandit> with WidgetsBindingObserver {
   static const String _licenseKey = "licenseKey";
   static const String _symbologies = "symbologies";
   static const String _platformViewId = "ScanditPlatformView";
-  ScanditController _controller;
+  ScanditController? _controller;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
     _controller = ScanditController(widget.scanned, widget.onError);
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    _controller.dispose();
+    WidgetsBinding.instance!.removeObserver(this);
+    _controller!.dispose();
     super.dispose();
   }
 
@@ -59,9 +59,9 @@ class _ScanditState extends State<Scandit> with WidgetsBindingObserver {
     if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.inactive ||
         state == AppLifecycleState.detached) {
-      _controller.stopCamera();
+      _controller!.stopCamera();
     } else if (state == AppLifecycleState.resumed) {
-      _controller.startCamera();
+      _controller!.startCamera();
     }
   }
 

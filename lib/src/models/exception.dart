@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 
 /// Generic Flutter Scandit Barcode Exception
 class BarcodeScanException implements Exception {
-  final String message;
+  final String? message;
   static const String defaultErrorMessage = "Unknown platform error";
 
   BarcodeScanException([this.message = defaultErrorMessage]);
@@ -20,7 +20,7 @@ class BarcodeScanException implements Exception {
 /// Exception caused by missing Scandit licence key
 class MissingLicenceException implements BarcodeScanException {
   @override
-  final String message;
+  final String? message;
 
   MissingLicenceException([this.message]);
 
@@ -37,7 +37,7 @@ class MissingLicenceException implements BarcodeScanException {
 /// Exception caused denied camera permissions
 class CameraPermissionDeniedException implements BarcodeScanException {
   @override
-  final String message;
+  final String? message;
 
   CameraPermissionDeniedException([this.message]);
 
@@ -54,7 +54,7 @@ class CameraPermissionDeniedException implements BarcodeScanException {
 /// Exception caused by unexpected failure in initializing the camera
 class CameraInitializationException implements BarcodeScanException {
   @override
-  final String message;
+  final String? message;
 
   CameraInitializationException([this.message]);
 
@@ -71,7 +71,7 @@ class CameraInitializationException implements BarcodeScanException {
 /// Exception caused by not finding a camera to use for scanning
 class NoCameraException implements BarcodeScanException {
   @override
-  final String message;
+  final String? message;
 
   NoCameraException([this.message]);
 

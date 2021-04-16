@@ -24,7 +24,7 @@ class ScanditController {
   static const MethodChannel _channel = MethodChannel('ScanditView');
 
   final void Function(BarcodeResult) _scanned;
-  final void Function(BarcodeScanException) _onError;
+  final void Function(BarcodeScanException)? _onError;
 
   ScanditController(this._scanned, this._onError) {
     _channel.setMethodCallHandler(_handleCallFromNative);
@@ -50,10 +50,10 @@ class ScanditController {
         _handleScan(Map<String, String>.from(call.arguments as Map));
         return;
       case _callFromNativeErrorCode:
-        error = _createExceptionByCode(call.arguments as String);
+        error = _createExceptionByCode(call.arguments as String?);
         break;
       case _callFromNativeUnforeseenError:
-        error = BarcodeScanException(call.arguments as String);
+        error = BarcodeScanException(call.arguments as String?);
         break;
       default:
         error = BarcodeScanException();
@@ -63,7 +63,7 @@ class ScanditController {
     _onError?.call(error);
   }
 
-  static BarcodeScanException _createExceptionByCode(String errorCode) {
+  static BarcodeScanException _createExceptionByCode(String? errorCode) {
     switch (errorCode) {
       case _errorNoLicence:
         return MissingLicenceException();
