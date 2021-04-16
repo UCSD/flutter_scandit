@@ -82,6 +82,8 @@ public class ScanditView implements PlatformView, MethodChannel.MethodCallHandle
     public void dispose() {
         _methodChannel.setMethodCallHandler(null);
 
+        stopCameraAndCapturing();
+
         if (_barcodeCapture != null && _dataCaptureContext != null) {
             _barcodeCapture.removeListener(this);
             _dataCaptureContext.removeMode(_barcodeCapture);
