@@ -2,13 +2,12 @@ import 'package:flutter/services.dart';
 
 /// Generic Flutter Scandit Barcode Exception
 class BarcodeScanException implements Exception {
-  final String message;
+  final String? message;
   static const String defaultErrorMessage = "Unknown platform error";
 
   BarcodeScanException([this.message = defaultErrorMessage]);
 
-  factory BarcodeScanException.fromPlatformException(
-          PlatformException exception) =>
+  factory BarcodeScanException.fromPlatformException(PlatformException exception) =>
       BarcodeScanException(exception.message);
 
   @override
@@ -21,12 +20,11 @@ class BarcodeScanException implements Exception {
 /// Exception caused by missing Scandit licence key
 class MissingLicenceException implements BarcodeScanException {
   @override
-  final String message;
+  final String? message;
 
   MissingLicenceException([this.message]);
 
-  factory MissingLicenceException.fromPlatformException(
-          PlatformException exception) =>
+  factory MissingLicenceException.fromPlatformException(PlatformException exception) =>
       MissingLicenceException(exception.message);
 
   @override
@@ -39,12 +37,11 @@ class MissingLicenceException implements BarcodeScanException {
 /// Exception caused denied camera permissions
 class CameraPermissionDeniedException implements BarcodeScanException {
   @override
-  final String message;
+  final String? message;
 
   CameraPermissionDeniedException([this.message]);
 
-  factory CameraPermissionDeniedException.fromPlatformException(
-          PlatformException exception) =>
+  factory CameraPermissionDeniedException.fromPlatformException(PlatformException exception) =>
       CameraPermissionDeniedException(exception.message);
 
   @override
@@ -54,33 +51,31 @@ class CameraPermissionDeniedException implements BarcodeScanException {
   }
 }
 
-/// Exception caused by unexpected failure in initialising the camera
-class CameraInitialisationException implements BarcodeScanException {
+/// Exception caused by unexpected failure in initializing the camera
+class CameraInitializationException implements BarcodeScanException {
   @override
-  final String message;
+  final String? message;
 
-  CameraInitialisationException([this.message]);
+  CameraInitializationException([this.message]);
 
-  factory CameraInitialisationException.fromPlatformException(
-          PlatformException exception) =>
-      CameraInitialisationException(exception.message);
+  factory CameraInitializationException.fromPlatformException(PlatformException exception) =>
+      CameraInitializationException(exception.message);
 
   @override
   String toString() {
-    if (message == null) return "Camera Initialisation Exception";
-    return "Camera Initialisation Exception: $message";
+    if (message == null) return "Camera Initialization Exception";
+    return "Camera Initialization Exception: $message";
   }
 }
 
 /// Exception caused by not finding a camera to use for scanning
 class NoCameraException implements BarcodeScanException {
   @override
-  final String message;
+  final String? message;
 
   NoCameraException([this.message]);
 
-  factory NoCameraException.fromPlatformException(
-          PlatformException exception) =>
+  factory NoCameraException.fromPlatformException(PlatformException exception) =>
       NoCameraException(exception.message);
 
   @override

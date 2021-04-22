@@ -32,7 +32,7 @@ class SymbologyUtils {
   };
 
   /// get symbology string representation
-  static String getSymbologyString(Symbology symbology) {
+  static String? getSymbologyString(Symbology symbology) {
     if (_symbologyMap.containsKey(symbology)) {
       return _symbologyMap[symbology];
     } else {
@@ -41,7 +41,7 @@ class SymbologyUtils {
   }
 
   /// get symbology from string
-  static Symbology getSymbology(String symbologyString) {
+  static Symbology? getSymbology(String? symbologyString) {
     if (_symbologyMap.containsValue(symbologyString)) {
       return _symbologyMap.entries
           .firstWhere((MapEntry<Symbology, String> entry) =>
