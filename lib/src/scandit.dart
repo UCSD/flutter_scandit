@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-import '../flutter_scandit_plugin.dart';
 import './models/index.dart';
 import './utils/symbology_utils.dart';
+import '../flutter_scandit_plugin.dart';
 
 /// Make sure that you display this widget only after the app was granted the camera
 /// permissions from the user. You can use 'permission_handler' package or similar for this
@@ -42,13 +42,13 @@ class _ScanditState extends State<Scandit> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     _controller = ScanditController(widget.scanned, widget.onError);
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     _controller!.dispose();
     super.dispose();
   }
@@ -69,7 +69,8 @@ class _ScanditState extends State<Scandit> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     final arguments = {
       _licenseKey: widget.licenseKey,
-      _symbologies: widget.symbologies.map(SymbologyUtils.getSymbologyString).toList()
+      _symbologies:
+          widget.symbologies.map(SymbologyUtils.getSymbologyString).toList()
     };
 
     if (defaultTargetPlatform == TargetPlatform.android) {
@@ -77,7 +78,8 @@ class _ScanditState extends State<Scandit> with WidgetsBindingObserver {
         viewType: _platformViewId,
         creationParams: arguments,
         creationParamsCodec: Scandit._decoder,
-        onPlatformViewCreated: (_) => widget.onScanditCreated?.call(_controller),
+        onPlatformViewCreated: (_) =>
+            widget.onScanditCreated?.call(_controller),
       );
     }
 
